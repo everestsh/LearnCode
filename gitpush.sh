@@ -2,6 +2,8 @@
 
 echo -e "1 > 删除当前目录的.DS_store.\n"
 find ../ -name .DS_Store a.out exec rm {} \;
+find ../ -name . *.exe exec rm {} \;
+find ../ -name .  *.o exec rm {} \;
 echo -e "2 > 删除\n"
 cd go   && mv bin doc lib pkg  ../../../gobak   && cd -
 rm -rf "./c++/github.com" "c++/leetcode/0001towSum/build" "c++/leetcode/0002addTwoNumbers/build" "c++/slcpp/0003/build"

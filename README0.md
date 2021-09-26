@@ -2,7 +2,7 @@
 
 ```
 下载：
-git clone https://github.com/sooof/WebLearn.git
+git clone git@github.com:everestsh/WebLearn.git
 
 测试github是否联通：
 ssh -T git@github.com
@@ -35,5 +35,17 @@ git撤销已经push到远端的commit：
 git log -2
 git reset --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
 git push origin master --force
+
+5>
+git撤销已经push到远端的commit：
+git log -2
+git --soft --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
+git push origin master --force
+
+6>Git主干同步到分支
+    1.先切换到本地仓库，更新最新代码。
+    2.切换到要同步的分支
+    3.运行命令
+git merge main
 
 ```

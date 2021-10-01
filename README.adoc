@@ -9,7 +9,7 @@ toc::[]
 
 [source,bash]
 ----
-git clone git@github.com:everestsh/WebLearn.git
+git clone git@github.com:everestsh/LearnCode.git
 ----
 
 
@@ -58,12 +58,85 @@ ssh -T git@github.com
 
 * 5> 更改：git撤销已经push到远端的commit,不会更改暂存的内容：
 
-git log -2
-git reset --soft d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-git push origin master --force
+ git log -2
+ git reset --soft d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
+ git push origin master --force
 
-* 6>Git主干同步到分支
+
+* 6> Git主干同步到分支
+
     1.先切换到本地仓库，更新最新代码。
     2.切换到要同步的分支
     3.运行命令
-git merge main
+    
+    git merge main
+
+
+* 7>Git分支同步到主干
+    
+    <1> 分支
+    git add .
+    git commit -m "  dff"
+    git push
+    <2> 主干 
+    git checkout master 
+    git pull
+    <3> 分支
+    git checkout wendy
+    git commit #
+    <4> 合并最新主干代码
+    git checkout master
+    git merge wendy --squash
+    git commit #
+    git push origin
+
+* 8> rebase
+
+    git checkout -b bugFix
+    git commit 
+    git checkout main
+    git commit 
+    git checkout bugFix
+    git rebase main
+
+* temp>test
+
+    git checkout bugFix   git switch 
+    git merge main
+    git merge bugFix
+    git checkout C1; git checkout main; git commit
+    git commit C2
+    git checkout main^
+    
+* 9> 主干修改，我想跳到分支
+
+    以将更改藏起来以备后用
+    git stash save README.md
+    git checkout wendy
+    我想重新回到我正在编辑的分支的文档
+    git checkout main
+    git stash pop
+
+* 10> tag
+
+    git tag v0.9
+    git push origin --tags
+    git push origin main
+
+* 11> 出现以下错误
+
+    fatal: You are not currently on a branch.
+    To push the history leading to the current (detached HEAD)
+    state now, use
+    当我做一个git status我看到HEAD detached from 4a74ac3
+
+    但是，如果您强制推送，则可能会导致所有其他签出该分支的用户出现问题。一个风险较小的解决方案是从分离的 HEAD 创建一个临时分支，然后将该分支合并到master：
+    git branch temp-branch
+    git checkout master
+    git merge temp-branch
+    git push origin master
+* 12> c
+
+
+
+

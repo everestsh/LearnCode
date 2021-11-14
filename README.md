@@ -154,5 +154,114 @@ git merge main
     thinker-g@localhost: ~/app$ git commit -am "Update submodule url." # 提交变更
     PS: 本实验使用git 2.7.4 完成，较低版本git可能不能自动更新.git/config文件，需要修修改完".gitmodule"文件后手动修改.git/config.以上。
 ```
-* 15>
+* 15>git submodule 添加 更新 删除 教程
 
+    *   添加submodule
+
+    ```
+    # 例如我的子模块是tensorflow
+
+    cd my_project/
+    git submodule add https://github.com/tensorflow/tensorflow.git tensorflow
+
+    或者给目录起个其他名字
+    cd my_project/
+    git submodule add https://github.com/tensorflow/tensorflow.git my_tensorflow
+    ```
+
+    * 初始化所有submodule
+    ```
+    cd my_project
+    git submodule init
+    git submodule update
+
+    或者用一行命令
+    cd my_project
+    git submodule update --init --recursive
+    ```
+
+    * 更新submodule
+
+    ```
+     例如我的子模块是tensorflow
+    把子模块看作单独的仓库就行：
+    cd my_project/tensorflow/
+    git pull
+
+    ```
+
+    *  删除submodule
+
+    ```
+    # 例如我的子模块是tensorflow
+
+    rm -rf tensorflow  # 删除子模块目录文件
+    vim .gitmodules # 移除子模块的索引信息
+    vim .git/config # 移除子模块的配置信息
+    rm -rf .git/modules/tensorflow # 移除子模块的其他信息
+
+    可以提交.gitmodules了
+
+    # 为了避免有缓存，可以再执行以下：
+    git rm --cached tensorflow
+
+    # 看到 fatal: pathspec 'xxxxx' did not match any files 说明说明干净了。
+    ```
+* 16>git 删除本地和远程分支
+
+    * 切换到要操作的项目文件夹 
+
+    ```
+    cd <ProjectPath>
+    ```
+    * 查看项目的分支们(包括本地和远程) 
+
+    ```
+    git branch -a
+    ```
+
+    * 删除本地分支
+
+    ```
+    git branch -d <BranchName>
+    ```
+
+    * 删除远程分支
+
+    ```
+    git push origin --delete <BranchName>
+    ```
+
+    * 查看删除后分支们 
+
+    ```
+    git branch -a
+    ```
+  
+
+* git查看某个文件的修改历史
+
+    *  切换到目录
+    *  使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～
+
+    ```
+    git log --pretty=oneline 文件名
+    ```
+    *  git show即可显示具体的某次的改动的修改～
+
+    ```
+    git show 356f6def9d3fb7f3b9032ff5aa4b9110d4cca87e
+    ```
+
+* git 放弃本地修改，强制拉取更新
+
+    * 1> git fetch --all
+    * 2> git reset --hard origin/master
+    * 3> git pull //可以省略 
+
+    
+    `it fetch 指令是下载远程仓库最新内容，不做合并`
+
+    `git reset 指令把HEAD指向master最新版本`
+
+* git 放弃本地修改，强制拉取更新

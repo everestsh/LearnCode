@@ -1,76 +1,102 @@
 # WebLearn
 
-```
+
 下载：
+```
 it clone git@github.com:everestsh/LearnCode.git
+```
+测试github是否联通：
+```
+ssh -T git@github.com
+```
 
 测试github是否联通：
+```
 ssh -T git@github.com
+```
+* 1>
 
+    ```
+    find ../ -name .DS_Store -exec rm {} \;
+    find ~/ -name '.DS_Store' -delete 删除当前目录的.DS_store
+    ```
+* 2>更新：
 
-测试github是否联通：
-ssh -T git@github.com
+    ```
+    git pull: 更新当前分支(将本地的文件更新到最新)
+    git pull origin master: 更新 origin remote 的 master 分支
+    git fetch: 获取服务器端的改动，比如其他用户新建了一个分支并push到了服务器，运行这个命令之后会得到这个分支的信息
+    ```
 
-1>
-find ../ -name .DS_Store -exec rm {} \;
-find ~/ -name '.DS_Store' -delete 删除当前目录的.DS_store
+* 3>上传：
 
-2>更新：
-git pull: 更新当前分支(将本地的文件更新到最新)
-git pull origin master: 更新 origin remote 的 master 分支
-git fetch: 获取服务器端的改动，比如其他用户新建了一个分支并push到了服务器，运行这个命令之后会得到这个分支的信息
+    ```
+    将自己的修改push到github上：
+    git add .
+    git commit -m "first commit"
+    git push -u origin master
+    or
+    git add --all
+    git commit -m "first commit"
+    git push -u origin master
+    ```
 
-3>上传：
-将自己的修改push到github上：
-git add .
-git commit -m "first commit"
-git push -u origin master
-or
-git add --all
-git commit -m "first commit"
-git push -u origin master
+* 4>
+    * git撤销已经push到远端的commit：
 
-4>
-git撤销已经push到远端的commit：
-git log -2
-git reset --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-git push origin master --force
+    ```
+     git log --pretty=oneline
+    git log -2
+    git reset --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
+    git push origin master --force
+    ```
+    * git撤销已经push到远端的commit：
+    ```
+     git log --pretty=oneline
+    git log -2
+    git --soft d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
+    或
+    git --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
+    git push origin master --force
+    ```
+    * HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，
+    使用命令
+    ```
+    git reset --hard commit_id。
+    ```
+    穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
+    要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
 
-5>
-git撤销已经push到远端的commit：
-git log -2
-git --soft --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-git push origin master --force
-
-6>Git主干同步到分支
+* 5>Git主干同步到分支
     1.先切换到本地仓库，更新最新代码。
     2.切换到要同步的分支
     3.运行命令
-git merge main
+    ```
+    git merge main
 
-```
-7>Git分支同步到主干
+    ```
+* 6>Git分支同步到主干
 
-```
-   <1> 分支
-    git add .
-    git commit -m "  dff"
-    git push
-    <2> 主干 
-    git checkout master 
-    git pull
-    <3> 分支
-    git checkout wendy
-    git commit #
-    <4> 合并最新主干代码
-    git checkout master
-    git merge wendy --squash
-    git commit #
-    git push origin
+    ```
+    <1> 分支
+        git add .
+        git commit -m "  dff"
+        git push
+        <2> 主干 
+        git checkout master 
+        git pull
+        <3> 分支
+        git checkout wendy
+        git commit #
+        <4> 合并最新主干代码
+        git checkout master
+        git merge wendy --squash
+        git commit #
+        git push origin
 
-```
+    ```
 
-* 8> rebase
+* 7> rebase
 ```
     git checkout -b bugFix
     git commit 
@@ -79,16 +105,8 @@ git merge main
     git checkout bugFix
     git rebase main
 ```
-* temp>test
-```
-    git checkout bugFix   git switch 
-    git merge main
-    git merge bugFix
-    git checkout C1; git checkout main; git commit
-    git commit C2
-    git checkout main^
-```
-* 9> 主干修改，我想跳到分支
+
+* 8> 主干修改，我想跳到分支
 ```
     以将更改藏起来以备后用
     git stash save README.md
@@ -97,13 +115,13 @@ git merge main
     git checkout main
     git stash pop
 ```
-* 10> tag
+* 9> tag
 ```
     git tag v0.9
     git push origin --tags
     git push origin main
 ```
-* 11> 出现以下错误
+* 10> 出现以下错误
 ```
     fatal: You are not currently on a branch.
     To push the history leading to the current (detached HEAD)
@@ -116,19 +134,20 @@ git merge main
     git merge temp-branch
     git push origin master
 ```
-* 12> 怎样在历史与现在版本来回切换
+* 11> 怎样在历史与现在版本来回切换
 ```
+    git log --pretty=oneline
     git log - 10
     git checkout 9a2ae0a28aed4f0a87fdbf06ec
     git checkout xxxxx
 ```
-* 13> del git cached
+* 12> del git cached
 ```
     git rm -r --cached .
     git add .
     git commit -m 'update .gitignore'
 ```
-* 14> git 中 删除 submodule
+* 13> git 中 删除 submodule
 ```
     有时子模块的项目维护地址发生了变化，或者需要替换子模块，就需要删除原有的子模块。
 
@@ -154,7 +173,7 @@ git merge main
     thinker-g@localhost: ~/app$ git commit -am "Update submodule url." # 提交变更
     PS: 本实验使用git 2.7.4 完成，较低版本git可能不能自动更新.git/config文件，需要修修改完".gitmodule"文件后手动修改.git/config.以上。
 ```
-* 15>git submodule 添加 更新 删除 教程
+* 14>git submodule 添加 更新 删除 教程
 
     *   添加submodule
 
@@ -207,7 +226,7 @@ git merge main
 
     # 看到 fatal: pathspec 'xxxxx' did not match any files 说明说明干净了。
     ```
-* 16>git 删除本地和远程分支
+* 15>git 删除本地和远程分支
 
     * 切换到要操作的项目文件夹 
 
@@ -239,7 +258,7 @@ git merge main
     ```
   
 
-* git查看某个文件的修改历史
+* 16>git查看某个文件的修改历史
 
     *  切换到目录
     *  使用下面的命令可列出文件的所有改动历史，注意，这里着眼于具体的一个文件，而不是git库，如果是库，那改动可多了去了～
@@ -253,7 +272,7 @@ git merge main
     git show 356f6def9d3fb7f3b9032ff5aa4b9110d4cca87e
     ```
 
-* git 放弃本地修改，强制拉取更新
+* 17>git 放弃本地修改，强制拉取更新
 
     * 1> git fetch --all
     * 2> git reset --hard origin/master
@@ -264,4 +283,80 @@ git merge main
 
     `git reset 指令把HEAD指向master最新版本`
 
-* git 放弃本地修改，强制拉取更新
+* 18>git 查看 文件修改
+
+    * 1> 查看某个文件修改
+    ```
+    git diff 文件名
+    ``` 
+   * 2> 查看有无文件修改
+   ```
+    git diff
+   ``` 
+   或
+   ```
+   git status
+   ```
+    ```
+    修改README.md后,使用git status查看：
+
+    ➜  LearnCode git:(master) ✗ git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    Changes not staged for commit:
+    (use "git add <file>..." to update what will be committed)
+    (use "git restore <file>..." to discard changes in working directory)
+            modified:   README.md
+
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+    修改README.md后,运行git add .使用git status查看：
+    ➜  LearnCode git:(master) ✗ git add .
+    ➜  LearnCode git:(master) ✗ git status
+    On branch master
+    Your branch is up to date with 'origin/master'.
+
+    Changes to be committed:
+    (use "git restore --staged <file>..." to unstage)
+            modified:   README.md
+
+    修改README.md后,运行git commit -m 后使用git status查看：
+    ➜  LearnCode git:(master) ✗ git commit -m "update README"  
+    [master 09c1452] update README
+    1 file changed, 110 insertions(+), 1 deletion(-)
+    ➜  LearnCode git:(master) git status                    
+    On branch master
+    Your branch is ahead of 'origin/master' by 1 commit.
+    (use "git push" to publish your local commits)
+
+    nothing to commit, working tree clean
+    ```
+
+* 19> 恢复使用·git reset --hard HEAD^·回退到的某个版本，
+
+    ```
+    git reflog
+    ```
+* 20> git log --graph命令可以看到分支合并图。
+
+    ```
+    git log --graph
+    ```
+
+* 21> Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+
+* temp>test
+```
+    git checkout bugFix   git switch 
+    git merge main
+    git merge bugFix
+    git checkout C1; git checkout main; git commit
+    git commit C2
+    git checkout main^
+```
+* maco查看端口占用
+
+    ```
+     sudo lsof -i tcp:5000
+    ```

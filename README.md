@@ -341,20 +341,72 @@ ssh -T git@github.com
 * 20> git log --graph命令可以看到分支合并图。
 
     ```
+    git log --pretty=oneline
     git log --graph
     ```
 
-* 21> Git还提供了一个stash功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
+* 21> Git还提供了一个stash功能，
+    
+    * 可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：
 
+    ```
+    git stash
+    ```
+
+    * 用git stash list命令看看,刚才的工作现场存到哪去了？
+
+    ```
+    git stash list 
+    ```
+    * Git把stash内容存在某个地方了，但是需要恢复一下，有两个办法：
+
+        * 1, 用`git stash apply`恢复，但是恢复后，stash内容并不删除，你需要用`git stash drop`来删除；
+        * 2, 另一种方式是用`git stash pop`，恢复的同时把stash内容也删了：
+        * 3, 你可以多次stash，恢复的时候，先用`git stash list`查看，然后恢复指定的stash，用命令：
+        ```
+        git stash apply stash@{0}
+        ```
+    * 工作流程
+    ```
+    git stash
+    git stash pop
+    ```
+* 22> 多人协作
+
+    * 查看远程库的信息
+    ```
+    git remote
+    ```
+
+    * 显示更详细的信息
+    ```
+    git remote -v
+    ```
+
+    * 推送分支
+    ```
+    git push origin master
+    ```
+        * master分支是主分支，因此要时刻与远程同步；
+        * dev分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；
+* 23> 修改commit的信息
+    * 修改最后一次commit信息
+    ```
+    git commit --amend --message="Register.css finish"
+    ```        
+
+
+    
 * temp>test
-```
-    git checkout bugFix   git switch 
-    git merge main
-    git merge bugFix
-    git checkout C1; git checkout main; git commit
-    git commit C2
-    git checkout main^
-```
+
+    ```
+        git checkout bugFix   git switch 
+        git merge main
+        git merge bugFix
+        git checkout C1; git checkout main; git commit
+        git commit C2
+        git checkout main^
+    ```
 * maco查看端口占用
 
     ```

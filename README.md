@@ -458,11 +458,66 @@ rebase的目的是使得我们在查看历史提交的变化时更容易，因�
     * 命令 `git push origin :refs/tags/<tagname>`可以删除一个远程标签。
 
 
+* 31>git修改分支名称
+    * 1> 本地分支重命名: `git branch -m oldName newName`
+
+* 32> 删除远程地址
+    * 1> 第一個方法直接用指令修改 remote 遠端數據庫的位置(URL) `git remote set-url origin git://new.url.here`
+    * 2> git remote remove heroku   // remove a remote:
+    * 3> git remote add heroku myAppsName  
+    * 4> git push -u origin master
+    *  git remote -v  
+
+* 33> git  修改分支名称
+    * 1> 本地分支重命名
+        `git branch -m oldName newName`
+    * 2> 远程分支重命名
+        * 重命名远程分支对应的本地分支
+            `git branch -m oldName newName`
+        * 删除远程分支
+            `git push --delete origin oldName`
+        * 上传新命名的本地分支
+            `git push origin newName`
+        * 把修改的本地分支与远程分支关联
+            `git branch --set-upstream-to origin/newName`
+
+    * 3> 查看当前代码仓库源
+
+```
+
+1> npm init --y // create package.json
+2> yarn add express
+3> npx gitignore node
+4> yarn add nodemon
+5> touch index.js
+6> yarn  server  :  npm run server
+
+npm i dotenv
+
+heroku:
+cd node-js-getting-started
+heroku create
+git remote heroku added
+git push heroku main
+heroku ps:scale web=1
+heroku open
+查看有关正在运行的应用程序的信息，heroku logs --tail
 
 
+git init // init empty Git repository
+npm i dotenv
+npx gitignore node
+npm init -y
+npm i nodemon
+npx eslint --init
+
+npx create-react-app client
+npm i -D --save-exact mini-css-extract-plugin@2.4.5
+npm run build
+
+```
 
 
-    
 * temp>test
 
     ```
@@ -478,3 +533,21 @@ rebase的目的是使得我们在查看历史提交的变化时更容易，因�
     ```
      sudo lsof -i tcp:5000
     ```
+* 杀掉进程
+```
+npm i -g fkill-cli
+fkill :9000
+
+
+npx kill-port 3000
+```
+
+* javascript format vscode
+
+```
+The code formatting is available in Visual Studio Code through the following shortcuts:
+On Windows Shift + Alt + F.
+On Mac Shift + Option + F.
+On Linux Ctrl + Shift + I.
+
+```

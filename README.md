@@ -481,7 +481,47 @@ rebase的目的是使得我们在查看历史提交的变化时更容易，因�
         * 把修改的本地分支与远程分支关联
             `git branch --set-upstream-to origin/newName`
 
-    * 3> 查看当前代码仓库源
+    * 3> 查看当前代码仓库源 `git remote -v  `
+* 34> 合并分支的README.md 到main
+    `git checkout mj.g_1 README.md `
+* 35> git 命令合并分支代码
+
+```
+合并步骤：
+
+1、进入要合并的分支（如开发分支合并到master，则进入master目录）
+
+git pull
+
+2、查看所有分支是否都pull下来了
+
+git branch -a
+
+3、使用merge合并开发分支
+
+git merge 分支名
+
+4、查看合并之后的状态
+
+git status 
+
+5、有冲突的话，通过IDE解决冲突；
+
+6、解决冲突之后，将冲突文件提交暂存区
+
+git add 冲突文件
+
+7、提交merge之后的结果
+
+git commit 
+
+如果不是使用git commit -m "备注" ，那么git会自动将合并的结果作为备注，提交本地仓库；
+
+8、本地仓库代码提交远程仓库
+
+git push
+
+```
 
 ```
 
@@ -514,6 +554,31 @@ npx eslint --init
 npx create-react-app client
 npm i -D --save-exact mini-css-extract-plugin@2.4.5
 npm run build
+
+
+npx knex init
+npx knex migrate:make table-fruits
+
+npm install knex@0.95.15 sqlite3
+
+
+
+npm install knex@0.95.15 sqlite3
+npx knex init
+npm i knex-cleaner
+npm i  express nodemon
+npm install -g knex
+npx  knex migrate:make create-tables
+        npx  knex migrate:make  first-migration
+        npx knex seed:make recipes
+knex seed:make 01-users 
+ "scripts": {
+    "server": "nodemon index.js",
+    "migrate": "knex migrate:latest",
+    "rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+
 
 ```
 
@@ -551,3 +616,4 @@ On Mac Shift + Option + F.
 On Linux Ctrl + Shift + I.
 
 ```
+

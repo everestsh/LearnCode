@@ -524,61 +524,7 @@ git push
 ```
 
 ```
-
-1> npm init --y // create package.json
-2> yarn add express
-3> npx gitignore node
-4> yarn add nodemon
-5> touch index.js
-6> yarn  server  :  npm run server
-
-npm i dotenv
-
-heroku:
-cd node-js-getting-started
-heroku create
-git remote heroku added
-git push heroku main
-heroku ps:scale web=1
-heroku open
-查看有关正在运行的应用程序的信息，heroku logs --tail
-
-
-git init // init empty Git repository
-npm i dotenv
-npx gitignore node
-npm init -y
-npm i nodemon
-npx eslint --init
-
-npx create-react-app client
-npm i -D --save-exact mini-css-extract-plugin@2.4.5
-npm run build
-
-
-npx knex init
-npx knex migrate:make table-fruits
-
-npm install knex@0.95.15 sqlite3
-
-
-
-npm install knex@0.95.15 sqlite3
-npx knex init
-npm i knex-cleaner
-npm i  express nodemon
-npm install -g knex
-npx  knex migrate:make create-tables
-        npx  knex migrate:make  first-migration
-        npx knex seed:make recipes
-knex seed:make 01-users 
- "scripts": {
-    "server": "nodemon index.js",
-    "migrate": "knex migrate:latest",
-    "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
-  },
-
+33
 
 ```
 
@@ -617,3 +563,7 @@ On Linux Ctrl + Shift + I.
 
 ```
 
+```
+echo "# MACOS" >> .gitignore; echo ".DS_Store" >> .gitignore
+git push --set-upstream origin init
+```

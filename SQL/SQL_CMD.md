@@ -1,6 +1,27 @@
 # SQL CMD
 
-
+    * 1> `SELECT OrderID, CustomerName FROM orders 
+          join Customers`
+    * 2> `SELECT OrderID, CustomerName, OrderDate FROM orders
+            join Customers
+            on Orders.CustomerId = Customers.CustomerId`
+    * 3> `SELECT OrderID, CustomerName, ShipperName, OrderDate FROM orders
+            join Customers
+            on Orders.CustomerId = Customers.CustomerId
+            join Shippers
+            on Orders.ShipperId = Shippers.ShipperId`
+    * 4> `SELECT OrderID, CustomerName, ShipperName, OrderDate FROM orders
+            join Customers
+            on Orders.CustomerId = Customers.CustomerId
+            join Shippers
+            on Orders.ShipperId = Shippers.ShipperId`
+    * 5> `SELECT OrderID, CustomerName, ShipperName, OrderDate FROM orders as O
+            join Customers as C
+            on O.CustomerId = C.CustomerId
+            join Shippers as S
+            on O.ShipperId = S.ShipperId`
+    * 6> `INSERT INTO Customers (CustomerName) VALUES ('JIM') `
+    * 7> `update orders set customerid=101 where orderid=10248`
 
 ```
 select * from shippers;
@@ -36,6 +57,27 @@ delete from shippers where shipperid = 5
 
 
 insert into accounts (name, budget ) values ('acme', '1');
+
+
+
+SELECT user_id, username, password, role_type
+FROM public.users as u
+join user_role as r
+on u.role_id = r.role_id
+order by user_id 
+
+INSERT INTO classes (class_name, class_duration, max_class_size, class_date, start_time, class_location, class_instructor, intensity_id, type_id) 
+VALUES ('JIM', '1.5 hours', 10, '2021-11-19', '9:00:00', 'Gym Z', 1, 3, 3)  
+
+
+
+BEGIN TRANSACTION
+   DECLARE @DataID int;
+   INSERT INTO DataTable (Column1 ...) VALUES (....);
+   SELECT @DataID = scope_identity();
+   INSERT INTO LinkTable VALUES (@ObjectID, @DataID);
+COMMIT
+
 
 
 Day2

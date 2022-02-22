@@ -1,0 +1,1 @@
+/Users/raylea/Dropbox/Workspace/github/everestsh/LearnCode/rust/test/0001/hello-rust1/target/debug/hello-rust1: /Users/raylea/Dropbox/Workspace/github/everestsh/LearnCode/rust/test/0001/hello-rust1/src/main.rs

@@ -26,3 +26,19 @@ cargo run
 cargo build
 
 ```
+
+* the first rush
+
+```
+touch main.rs
+
+edit main.rs
+---
+fn main() {
+    println!("Hello, world!");
+}
+---
+$ rustc main.rs
+$ ./main
+Hello, world!
+```

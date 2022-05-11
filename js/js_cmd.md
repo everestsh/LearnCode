@@ -119,7 +119,12 @@ npm i  react-router-dom@5
     git add .
     git commit -am "heroku"
     git push heroku main
-    
+
+
+   heroku create baw-ftpotluckplanner-backend
+   git push heroku init
+   
+
 
 
 

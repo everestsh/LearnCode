@@ -15,11 +15,6 @@ ssh -T git@github.com
 ssh -T git@github.com
 ```
 * 1>
-
-    ```
-    find ../ -name .DS_Store -exec rm {} \;
-    find ~/ -name '.DS_Store' -delete 删除当前目录的.DS_store
-    ```
 * 2>更新：
 
     ```
@@ -40,33 +35,6 @@ ssh -T git@github.com
     git commit -m "first commit"
     git push -u origin master
     ```
-
-* 4>
-    * git撤销已经push到远端的commit：
-
-    ```
-     git log --pretty=oneline
-    git log -2
-    git reset --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-    git push origin master --force
-    ```
-    * git撤销已经push到远端的commit：
-    ```
-     git log --pretty=oneline
-    git log -2
-    git --soft d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-    或
-    git --hard d3b87bab6d216299d7167f9e53ac1ed43c6a1xxx
-    git push origin master --force
-    ```
-    * HEAD指向的版本就是当前版本，因此，Git允许我们在版本的历史之间穿梭，
-    使用命令
-    ```
-    git reset --hard commit_id。
-    ```
-    穿梭前，用git log可以查看提交历史，以便确定要回退到哪个版本。
-    要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本。
-
 * 5>Git主干同步到分支
     1.先切换到本地仓库，更新最新代码。
     2.切换到要同步的分支
@@ -75,27 +43,6 @@ ssh -T git@github.com
     git merge main
 
     ```
-* 6>Git分支同步到主干
-
-    ```
-    <1> 分支
-        git add .
-        git commit -m "  dff"
-        git push
-        <2> 主干 
-        git checkout master 
-        git pull
-        <3> 分支
-        git checkout wendy
-        git commit #
-        <4> 合并最新主干代码
-        git checkout master
-        git merge wendy --squash
-        git commit #
-        git push origin
-
-    ```
-
 * 7> rebase
 ```
     git checkout -b bugFix
@@ -147,85 +94,8 @@ ssh -T git@github.com
     git add .
     git commit -m 'update .gitignore'
 ```
-* 13> git 中 删除 submodule
-```
-    有时子模块的项目维护地址发生了变化，或者需要替换子模块，就需要删除原有的子模块。
 
-    删除子模块较复杂，步骤如下：
 
-    rm -rf 子模块目录 删除子模块目录及源码
-    vi .gitmodules 删除项目目录下.gitmodules文件中子模块相关条目
-    vi .git/config 删除配置项中子模块相关条目
-    rm .git/module/* 删除模块下的子模块目录，每个子模块对应一个目录，注意只删除对应的子模块目录即可
-    1. 优雅的删除子模块
-    # 逆初始化模块，其中{MOD_NAME}为模块目录，执行后可发现模块目录被清空
-    git submodule deinit {MOD_NAME} 
-    # 删除.gitmodules中记录的模块信息（--cached选项清除.git/modules中的缓存）
-    git rm --cached {MOD_NAME} 
-    # 提交更改到代码库，可观察到'.gitmodules'内容发生变更
-    git commit -am "Remove a submodule." 
-    2. 修改某模块URL
-    修改'.gitmodules'文件中对应模块的”url“属性;
-    使用git submodule sync命令，将新的URL更新到文件.git/config；
-    thinker-g@localhost: ~/app$ git submodule sync 
-    Synchronizing submodule url for 'gitmods/thinker_g/Helpers'
-    thinker-g@localhost: ~/app$ # 运行后可观察到'.git/config'中对应模块的url属性被更新
-    thinker-g@localhost: ~/app$ git commit -am "Update submodule url." # 提交变更
-    PS: 本实验使用git 2.7.4 完成，较低版本git可能不能自动更新.git/config文件，需要修修改完".gitmodule"文件后手动修改.git/config.以上。
-```
-* 14>git submodule 添加 更新 删除 教程
-
-    *   添加submodule
-
-    ```
-    # 例如我的子模块是tensorflow
-
-    cd my_project/
-    git submodule add https://github.com/tensorflow/tensorflow.git tensorflow
-
-    或者给目录起个其他名字
-    cd my_project/
-    git submodule add https://github.com/tensorflow/tensorflow.git my_tensorflow
-    ```
-
-    * 初始化所有submodule
-    ```
-    cd my_project
-    git submodule init
-    git submodule update
-
-    或者用一行命令
-    cd my_project
-    git submodule update --init --recursive
-    ```
-
-    * 更新submodule
-
-    ```
-     例如我的子模块是tensorflow
-    把子模块看作单独的仓库就行：
-    cd my_project/tensorflow/
-    git pull
-
-    ```
-
-    *  删除submodule
-
-    ```
-    # 例如我的子模块是tensorflow
-
-    rm -rf tensorflow  # 删除子模块目录文件
-    vim .gitmodules # 移除子模块的索引信息
-    vim .git/config # 移除子模块的配置信息
-    rm -rf .git/modules/tensorflow # 移除子模块的其他信息
-
-    可以提交.gitmodules了
-
-    # 为了避免有缓存，可以再执行以下：
-    git rm --cached tensorflow
-
-    # 看到 fatal: pathspec 'xxxxx' did not match any files 说明说明干净了。
-    ```
 * 15>git 删除本地和远程分支
 
     * 切换到要操作的项目文件夹 
@@ -447,16 +317,6 @@ rebase的目的是使得我们在查看历史提交的变化时更容易，因�
     * 命令`git tag -a <tagname> -m "blablabla..."`可以指定标签信息；
 
     * 命令`git tag`可以查看所有标签。
-* 30>
-
-    * 命令`git push origin <tagname>`可以推送一个本地标签；
-
-    * 命令`git push origin --tags`可以推送全部未推送过的本地标签；
-
-    * 命令`git tag -d <tagname>`可以删除一个本地标签；
-
-    * 命令 `git push origin :refs/tags/<tagname>`可以删除一个远程标签。
-
 
 * 31>git修改分支名称
     * 1> 本地分支重命名: `git branch -m oldName newName`
@@ -534,19 +394,8 @@ git push
         git commit C2
         git checkout main^
     ```
-* maco查看端口占用
-
-    ```
-     sudo lsof -i tcp:5000
-    ```
-* 杀掉进程
-```
-npm i -g fkill-cli
-fkill :9000
 
 
-npx kill-port 3000
-```
 
 * javascript format vscode
 

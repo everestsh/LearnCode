@@ -83,4 +83,22 @@ COMMIT
 Day2
 select * from fruits;
 select * from fruits where id = 2;
+
+
+
+
+####
+SELECT * 
+FROM comments as c
+JOIN notes as n
+ON c.note_id = n.note_id
+where n.note_id = 1
+ORDER BY n.note_id ASC
+
+SELECT comment_text 
+FROM comment_notes as c
+JOIN notes as n
+ON c.note_id = n.note_id
+where n.note_id = 1
+
 ```
